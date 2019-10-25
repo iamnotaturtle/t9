@@ -2,7 +2,7 @@
   "name": "t9",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://iamnotaturtle.github.io/t9/",
+  "homepage": "https://iamnotaturtle.github.io/t9",
   "dependencies": {
     "@types/jest": "24.0.19",
     "@types/node": "12.11.1",
