@@ -1,68 +1,15 @@
 export class TrieNode {
-  char: string = '';
-  isWord: boolean = false;
+  value: string = '';
+  words:{[word: string]: number} = {};
   children: {[char: string]: TrieNode} = {};
 
   toString() {
-    return `${this.char} ${this.isWord}`;
+    return `value: ${this.value}, words: ${JSON.stringify(this.words)}`;
   }
 }
 
 export class Trie {
   head: TrieNode = new TrieNode();
-
-  add(word: string) {
-    let curr = this.head;
-
-    for (let char of word) {
-      if (!curr.children[char]) {
-        let node = new TrieNode();
-        node.char = char;
-        curr.children[char] = node;
-      }
-      curr = curr.children[char];
-    }
-
-    curr.isWord = true;
-  }
-
-  isValid(word: string) {
-    let curr = this.head;
-
-    for (let char of word) {
-      let node: TrieNode | undefined = curr.children[char];
-      if (node){
-        curr = node;
-        continue;
-      }
-      return false;
-    }
-
-    if (curr.char === word[word.length - 1] && curr.isWord) {
-      return true;
-    }
-
-    return false;
-  }
-
-  traverse(node: TrieNode) {
-    if (!node) {
-      return;
-    }
-
-    console.log(node.toString());
-
-    for (const [key, child] of Object.entries(node.children)) {
-      this.traverse(child)
-    }
-  }
-
-  print() {
-    this.traverse(this.head)
-  }
-}
-
-export class T9 {
   mapLetters: {[letter: string]: number} = {
     A: 2,
     B: 2,
@@ -92,41 +39,98 @@ export class T9 {
     Z: 9,
   };
 
-  mapDigits: {[digit: number]: string[]} = {
-    2: ['a', 'b', 'c'],
-    3: ['d', 'e', 'f'],
-    4: ['g', 'h', 'i'],
-    5: ['j', 'k', 'l'],
-    6: ['m', 'n', 'o'],
-    7: ['p', 'q', 'r', 's'],
-    8: ['t', 'u', 'v'],
-    9: ['w', 'x', 'y', 'z'],
-  };
+  add(word: string): TrieNode {
+    let curr = this.head;
 
-  dictionary: Set<string> = new Set();
-  trie: Trie = new Trie();
+    for (let char of word) {
+      let digit = this.mapLetters[char.toUpperCase()];
 
-  constructor(dictionary?: string[]) {
-    if (!dictionary) {
-      return;
+      if (!curr.children[digit]) {
+        let node = new TrieNode();
+        node.value = digit.toString();
+        curr.children[digit] = node;
+      }
+      curr = curr.children[digit];
     }
+    curr.words[word] ? curr.words[word] += 1 : curr.words[word] = 1;
 
-    this.dictionary = new Set(dictionary);
-
-    for (let word of dictionary) {
-      this.trie.add(word);
-    }
+    return curr;
   }
 
-  validWords(sequence: string): string[] {
-    let valid: string[] = [];
-
+  getValidWords(sequence: string): string[] {
+    let curr = this.head;
     for (let digit of sequence) {
-      for (let char of this.mapDigits[parseInt(digit)]) {
-        
+      let node: TrieNode | undefined = curr.children[digit];
+      if (node){
+        curr = node;
+        continue;
+      } else {
+        break;
       }
     }
 
-    return valid;
+    if (sequence.endsWith(curr.value)) {
+      return Object.keys(curr.words);
+    }
+
+    return [];
+  }
+
+  isValid(word: string) {
+    let curr = this.head;
+    for (let char of word) {
+      let digit = this.mapLetters[char.toUpperCase()];
+      let node: TrieNode | undefined = curr.children[digit];
+      if (node){
+        curr = node;
+        continue;
+      }
+      return false;
+    }
+
+    if (curr.words[word]) {
+      return true;
+    }
+
+    return false;
+  }
+
+  traverse(node: TrieNode) {
+    if (!node) {
+      return;
+    }
+
+    console.log(node.toString());
+
+    for (const [, child] of Object.entries(node.children)) {
+      this.traverse(child);
+    }
+  }
+
+  print() {
+    this.traverse(this.head)
+  }
+}
+
+export class T9 {
+  dictionary: Set<string>;
+  trie: Trie =  new Trie();
+
+  constructor(words: string[] = []) {
+    this.dictionary = new Set(words);
+
+    this.dictionary.forEach(word => {
+      this.addWord(word);
+    });
+  }
+
+  addWord(word: string) {
+    this.dictionary.add(word);
+    this.trie.add(word);
+  }
+
+  getValidWords(sequence: string) {
+    // TODO: prompt user to add word?
+    return this.trie.getValidWords(sequence);
   }
 }

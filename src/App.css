@@ -25,11 +25,21 @@ body {
 
 .text-box {
   height: 40px;
+  margin: 20px 0px;
+  padding: 0px 10px;
   grid-column: span 3;
   background: white;
   display: flex;
   align-items: center;
   color: black;
+}
+
+.back-space {
+  grid-column: span 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
 }
 
 .word {
@@ -42,6 +52,6 @@ body {
   user-select: none;
 }
 
-.number-key:active {
+.number-key:active, .back-space:active {
   background: #84B356;
 }
