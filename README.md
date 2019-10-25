@@ -18,3 +18,7 @@ yarn test
 # Release
 yarn build
 ```
+
+## TODO
+* [ ] Add suggested word to dictionary
+* [ ] Add help overlay
