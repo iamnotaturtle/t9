@@ -11,6 +11,4 @@ jobs:
       uses: actions/checkout@master
 
     - name: Build and Deploy
-      run: |
-        npm install
-        npm run build
+      uses: JamesIves/github-pages-deploy-action@2.0.3
