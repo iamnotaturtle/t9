@@ -40,14 +40,24 @@ const numberPad = {
   },
 }
 
+const validWords: string[] = ['hey', 'me', 'first'];
+
 const App: React.FC = () => {
   return (
     <div className="App">
       <div className="phone">
         <div className="number-pad">
-          <div className="text-box">hey</div>
+          <div className="text-box">
+          {
+            validWords.map((word, index) => (
+              <div className="word" key={index}>
+                {word}
+              </div>
+            ))
+          }
+          </div>
           { Object.entries(numberPad).map((index, key) => 
-              <div className="number-key">
+              <div className="number-key" key={key}>
                 <div className="label">{index[1].label}</div>
                 <div className="sub-label">{index[1].subLabel}</div>
               </div>
