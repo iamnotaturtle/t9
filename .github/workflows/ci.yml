@@ -12,6 +12,6 @@ jobs:
 
     - name: Build and Deploy
       uses: actions/checkout@master
-      env:
-        FOLDER: build
-        BUILD_SCRIPT: npm install && npm run build
+      run: |
+        npm install
+        npm run build
