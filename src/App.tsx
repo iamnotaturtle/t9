@@ -41,36 +41,59 @@ const numberPad = {
   },
 }
 
-const validWords: string[] = [];
-
 const App: React.FC = () => {
-  const t9 = new T9(['a', 'b', 'c', 'cat']);
+  const t9 = new T9(['a', 'b', 'c', 'cat', 'bat']);
 
   const [sequence, setSequence] = useState('');
+  const [word, setWord] = useState('');
   const [validWords, setValidWords] = useState([] as string[]);
 
   const handleKey = (label: string) => {
-    setSequence(sequence + label);
-    const words = t9.getValidWords(sequence);
-    console.log('words', words);
+    const updatedSequence = sequence + label;
+    setSequence(updatedSequence);
+    const words = t9.getValidWords(updatedSequence);
     setValidWords(words);
-  }
+  };
+
+  const handleBack = () => {
+    const updatedSequence = sequence.slice(0, sequence.length - 1);
+    setSequence(updatedSequence);
+    const words = t9.getValidWords(updatedSequence);
+    setValidWords(words);
+  };
+
+  const handleWord = (suggestedWord: string) => {
+    setWord(suggestedWord);
+  };
 
   return (
     <div className="App">
+      <div className="toolbar">
+        <div className="logo">
+          T9
+        </div>
+        <div className="help">
+          &#x3f;
+        </div>
+      </div>
       <div className="phone">
         <div className="number-pad">
+          <div className="selected-word">
+            {word}
+          </div>
           <div className="text-box">
             <div className="sequence">
               {sequence}
             </div>
-          {
-            validWords.map((word, index) => (
-              <div className="word" key={index}>
-                {word}
-              </div>
-            ))
-          }
+          </div>
+          <div className="suggestions">
+            {
+              validWords.map((word, index) => (
+                <div className="word" key={index} onClick={() => handleWord(word)}>
+                  {word}
+                </div>
+              ))
+            }
           </div>
           { Object.entries(numberPad).map((index, key) => 
               <div className="number-key" key={key} onClick={() => handleKey(index[1].label)}>
@@ -79,7 +102,7 @@ const App: React.FC = () => {
               </div>
             ) 
           }
-          <div className="back-space" onClick={() => setSequence(sequence.slice(0, sequence.length - 1))}>
+          <div className="back-space" onClick={() => handleBack()}>
             &#9003;
           </div> 
         </div>
