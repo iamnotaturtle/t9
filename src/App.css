@@ -13,6 +13,36 @@ body {
   justify-content: center;
 }
 
+.overlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.overlay-content {
+  position: absolute;
+  margin: 0px 10px;   /* TODO handle desktop */
+  left: 0;
+  right: 0;
+  background: #E39237;
+  padding: 20px;
+  z-index: 3;
+}
+
+.overlay-title {
+  color: black;
+  font-weight: bolder;
+  font-size: larger;
+}
+
 .toolbar {
   position: absolute;
   width: 100%;

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import {T9} from './Trie';
+import {Overlay} from './Overlay';
 
 const numberPad = {
   1: {
@@ -42,7 +43,9 @@ const numberPad = {
 }
 
 const App: React.FC = () => {
-  const t9 = new T9(['a', 'b', 'c', 'cat', 'bat']);
+  const t9 = new T9(['a', 'I', 'am', 'cat', 'bat']);
+
+  const [open, setOpen] = useState(false);
 
   const [sequence, setSequence] = useState('');
   const [word, setWord] = useState('');
@@ -68,8 +71,9 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <Overlay open={open} onBackgroundClick={() => setOpen(false)}/>
       <div className="toolbar">
-        <div className="logo">
+        <div className="logo" onClick={() => setOpen(true)}>
           T9
         </div>
         <div className="help">
