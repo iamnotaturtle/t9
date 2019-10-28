@@ -18,3 +18,6 @@ yarn test
 # Release
 yarn build
 ```
+
+## Resources
+https://courses.cs.washington.edu/courses/cse303/09wi/homework/T9files/T9_Tries.pdf
