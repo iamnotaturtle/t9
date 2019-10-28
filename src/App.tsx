@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {T9} from './Trie';
 import {Overlay} from './Overlay';
+import {OverlayHelp} from './OverlayHelp';
 
 const numberPad = {
   1: {
@@ -43,9 +44,10 @@ const numberPad = {
 }
 
 const App: React.FC = () => {
-  const t9 = new T9(['a', 'I', 'am', 'cat', 'bat']);
+  const [t9, setT9] = useState(new T9(['a', 'I', 'am', 'me', 'you']));
 
   const [open, setOpen] = useState(false);
+  const [isOpenHelp, setIsOpenHelp] = useState(false);
 
   const [sequence, setSequence] = useState('');
   const [word, setWord] = useState('');
@@ -69,14 +71,28 @@ const App: React.FC = () => {
     setWord(suggestedWord);
   };
 
+  const handleBackgroundClick = (words: string[]) => {
+    setOpen(false);
+    words.forEach((word: string) => {
+      t9.addWord(word);
+    });
+    setT9(t9);
+  }
+
   return (
     <div className="App">
-      <Overlay open={open} onBackgroundClick={() => setOpen(false)}/>
+      <Overlay 
+        open={open} 
+        onBackgroundClick={(words) => handleBackgroundClick(words)}/>
+      <OverlayHelp
+        open={isOpenHelp}
+        onBackgroundClick={() => setIsOpenHelp(false)}
+      />
       <div className="toolbar">
         <div className="logo" onClick={() => setOpen(true)}>
           T9
         </div>
-        <div className="help">
+        <div className="help" onClick={() => setIsOpenHelp(true)}>
           &#x3f;
         </div>
       </div>
@@ -85,11 +101,12 @@ const App: React.FC = () => {
           <div className="selected-word">
             {word}
           </div>
-          <div className="text-box">
-            <div className="sequence">
-              {sequence}
-            </div>
-          </div>
+          <input className="text-box" type="number" value={sequence} onChange={(event) => {
+            let label = event.target.value;
+            setSequence(label);
+            const words = t9.getValidWords(label);
+            setValidWords(words);
+            }}/>
           <div className="suggestions">
             {
               validWords.map((word, index) => (
@@ -99,7 +116,8 @@ const App: React.FC = () => {
               ))
             }
           </div>
-          { Object.entries(numberPad).map((index, key) => 
+          { 
+            Object.entries(numberPad).map((index, key) => 
               <div className="number-key" key={key} onClick={() => handleKey(index[1].label)}>
                 <div className="label">{index[1].label}</div>
                 <div className="sub-label">{index[1].subLabel}</div>

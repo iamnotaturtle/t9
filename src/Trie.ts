@@ -44,7 +44,6 @@ export class Trie {
 
     for (let char of word) {
       let digit = this.mapLetters[char.toUpperCase()];
-
       if (!curr.children[digit]) {
         let node = new TrieNode();
         node.value = digit.toString();

@@ -1462,6 +1462,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-tagsinput@^3.19.6":
+  version "3.19.6"
+  resolved "https://registry.yarnpkg.com/@types/react-tagsinput/-/react-tagsinput-3.19.6.tgz#9a57571465a0e094045006b5974c5a070270ee3d"
+  integrity sha512-gUTcUOjcSkHKL3YgbbZ4t8yR/ggZJvIEyYk0X7mNVx7BShf+nmA47NgBZyCv4WiCP3U8z98mhy1f4X6zXlmLWA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@16.9.9":
   version "16.9.9"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.9.tgz#a62c6f40f04bc7681be5e20975503a64fe783c3a"
@@ -8394,15 +8401,15 @@ react-dev-utils@^9.1.0:
     strip-ansi "5.2.0"
     text-table "0.2.0"
 
-react-dom@16.10.2:
-  version "16.10.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.10.2.tgz#4840bce5409176bc3a1f2bd8cb10b92db452fda6"
-  integrity sha512-kWGDcH3ItJK4+6Pl9DZB16BXYAZyrYQItU4OMy0jAkv5aNqc+mAKb4TpFtAteI6TJZu+9ZlNhaeNQSVQDHJzkw==
+react-dom@^16.10.2:
+  version "16.11.0"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.11.0.tgz#7e7c4a5a85a569d565c2462f5d345da2dd849af5"
+  integrity sha512-nrRyIUE1e7j8PaXSPtyRKtz+2y9ubW/ghNgqKFHHAHaeP0fpF5uXR+sq8IMRHC+ZUxw7W9NyCDTBtwWxvkb0iA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.16.2"
+    scheduler "^0.17.0"
 
 react-error-overlay@^6.0.3:
   version "6.0.3"
@@ -8475,10 +8482,15 @@ react-scripts@3.2.0:
   optionalDependencies:
     fsevents "2.0.7"
 
-react@16.10.2:
-  version "16.10.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.10.2.tgz#a5ede5cdd5c536f745173c8da47bda64797a4cf0"
-  integrity sha512-MFVIq0DpIhrHFyqLU0S3+4dIcBhhOvBE8bJ/5kHPVOVaGdo0KuiQzpcjCPsf585WvhypqtrMILyoE2th6dT+Lw==
+react-tagsinput@^3.19.0:
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/react-tagsinput/-/react-tagsinput-3.19.0.tgz#6e3b45595f2d295d4657bf194491988f948caabf"
+  integrity sha512-ni+/qnZrYrvLg83LtTFHErKy1KQHL0fi0Y6C5jgC1dNUePE9cS/OlQ4XH6JRSjv9GGoeVE0R/ujSBaS1uzCRYQ==
+
+react@^16.10.2:
+  version "16.11.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.11.0.tgz#d294545fe62299ccee83363599bf904e4a07fdbb"
+  integrity sha512-M5Y8yITaLmU0ynd0r1Yvfq98Rmll6q8AxaEe88c8e7LxO8fZ2cNgmFt0aGAS9wzf1Ao32NKXtCl+/tVVtkxq6g==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -8952,10 +8964,10 @@ saxes@^3.1.9:
   dependencies:
     xmlchars "^1.3.1"
 
-scheduler@^0.16.2:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.16.2.tgz#f74cd9d33eff6fc554edfb79864868e4819132c1"
-  integrity sha512-BqYVWqwz6s1wZMhjFvLfVR5WXP7ZY32M/wYPo04CcuPM7XZEbV2TBNW7Z0UkguPTl0dWMA59VbNXxK6q+pHItg==
+scheduler@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.17.0.tgz#7c9c673e4ec781fac853927916d1c426b6f3ddfe"
+  integrity sha512-7rro8Io3tnCPuY4la/NuI5F2yfESpnfZyT6TtkXnSWVkcu0BCDJ+8gk5ozUaFaxpIyNuWAPXrH0yFcSi28fnDA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

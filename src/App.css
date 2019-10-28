@@ -32,14 +32,13 @@ body {
   margin: 0px 10px;   /* TODO handle desktop */
   left: 0;
   right: 0;
-  background: #E39237;
+  background:white;
+  color: black;
   padding: 20px;
   z-index: 3;
 }
 
-.overlay-title {
-  color: black;
-  font-weight: bolder;
+.help-title {
   font-size: larger;
 }
 
@@ -59,12 +58,17 @@ body {
   animation: blink .5s step-end infinite alternate;
 }
 
+.logo:focus, .logo:hover, .help:focus, .help:hover {
+  background: #84B356;    
+}
+
 @keyframes blink { 
   50% { border-color: white; } 
 }
 
 .help {
   padding: 10px;
+  width: 40px;
 }
 
 .selected-word {

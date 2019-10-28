@@ -18,4 +18,10 @@ describe('T9', () => {
     let t9 = new T9(['cat', 'bat', 'banana']);
     expect(t9.getValidWords('228')).toEqual(['cat', 'bat']);
   });
+
+  it('should add valid words to trie', () => {
+    let t9 = new T9();
+    t9.addWord('set');
+    expect(t9.getValidWords('738')).toEqual(['set']);
+  });
 });
