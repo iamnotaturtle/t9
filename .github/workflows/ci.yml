@@ -17,4 +17,4 @@ jobs:
         BASE_BRANCH: master
         BRANCH: gh-pages
         FOLDER: build
-        BUILD_SCRIPT: npm install && npm test && npm run build && touch build/.nojekyll
+        BUILD_SCRIPT: npm install && npm test --watchAll=false && npm run build && touch build/.nojekyll
