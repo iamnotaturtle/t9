@@ -1,20 +1,20 @@
-name: GitHub Actions Build and Deploy T9
+name: Test, Build and Deploy T9
 on:
   push:
     branches:
       - master
 jobs:
-  build-and-deploy:
+  test-build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Build and Deploy
+    - name: Test, Build and Deploy
       uses: JamesIves/github-pages-deploy-action@2.0.3
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BASE_BRANCH: master
         BRANCH: gh-pages
         FOLDER: build
-        BUILD_SCRIPT: npm install && npm run build && touch build/.nojekyll
+        BUILD_SCRIPT: npm install && npm test && npm run build && touch build/.nojekyll
