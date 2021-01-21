@@ -4,6 +4,8 @@ T9 keyboard using Tries.
 ## Overview
 Type a number, get a suggestion. Add suggested word if it does not exist.
 
+![Bubbles](./resources/bubbles.gif)
+
 ## Develop
 ```
 # Install
